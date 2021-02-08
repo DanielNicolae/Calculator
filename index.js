@@ -1,7 +1,7 @@
 function add(...nums) {
     let sum = 0;
     for (let num of nums) {
-        sum += num;
+        sum += Number(num);
     }
     return sum;
 }
@@ -11,9 +11,9 @@ function subtract(a, b) {
 }
 
 function multiply(...nums) {
-    let total = 0;
+    let total = 1;
     for (let num of nums) {
-        total += num;
+        total *= Number(num);
     }
     return total;
 }
@@ -22,62 +22,55 @@ function divide(a, b) {
     return (a / b);
 }
 
-function changeDisplay(result) {
-    document.querySelector(".result").textContent = result;
+let isNotEvaluated = true;
+let numbersOp = "";
+let result = "";
+
+function changeDisplay(mathOp) {
+    document.querySelector(".result").textContent = mathOp;
 }
 
-
-
 function displayOperation() {
-    let numbersOp = "";
-    document.querySelector(".clear").addEventListener("click", () => {
-        changeDisplay("");
-        numbersOp = "";
-    });
-    let digits = document.querySelectorAll(".number, .operation, .dot");
-    for(let i = 0; i < digits.length; i++) {
-        digits[i].addEventListener("click", () => {
-            numbersOp += digits[i].textContent;
+    let symbols = document.querySelectorAll(".number, .operation, .dot");
+    for(let i = 0; i < symbols.length; i++) {
+        symbols[i].addEventListener("click", () => {
+            numbersOp += symbols[i].textContent;
             changeDisplay(numbersOp);
         });
     }
 }
 displayOperation();
 
+document.querySelector(".clear").addEventListener("click", () => {
+    changeDisplay("");
+    numbersOp = "";
+    number1 = "";
+    number2 = "";
+});
+
 const operations = document.querySelectorAll(".operation");
 const digits = document.querySelectorAll(".number, .dot");
 let number1 = "";
 let number2 = "";
 let getFirstNum = true;
+let symbol = "";
 
 function getNumbers() {
-
     if(getFirstNum) {
         operations.forEach(op => {
             op.addEventListener("click", () => {
+                symbol = op.textContent;
+                console.log(symbol);
                 getFirstNum = false;
-                console.log(`numb1=${Number(number1)}`);
+                console.log(`numb1=${number1}`);
                 return Number(number1);
             });
         });
     }
     else {
-        document.querySelector(".equal").addEventListener("click", () => {
-            console.log(`numb2=${Number(number2)}`);
-            return Number(number2);
-        });
+        console.log(`numb2=${number2}`);
+        return Number(number2);
     }
-   
-}
-
-
-function getOperationSymbol() {
-    operations.forEach(op => {
-        op.addEventListener("click", () => {
-            console.log(op.textContent);
-            return op.textContent;
-        });
-    });
 }
 
 digits.forEach(key => {
@@ -85,7 +78,7 @@ digits.forEach(key => {
         if(getFirstNum){
             number1 += key.textContent;
         }
-        else {
+        else if(isNotEvaluated) {
             number2 += key.textContent;
         }
         getNumbers();
@@ -93,29 +86,48 @@ digits.forEach(key => {
 })
 
 function evaluateOperation() {
-    document.querySelector(".equal").addEventListener("click", () => {
-        let result = 0;
-        switch (getOperationSymbol()) {
-            case "+":
-                console.log("+")
-                if(number2){
-                    result += add(number1, number2);
-                    console.log(`result= ${result}`);
-                }
-                break;
-            case "-":
-                result = subtract(number1, number2);
-                break;
-            case "x":
-                result = multiply(number1, number2);
-                break;
-            case "&#247;":
-                result = divide(number1, number2);
-                break;
-        }
-        console.log(`${number1}  ${number2} = ${result}`);
-        return result;
-    });
+    isNotEvaluated = false;
+    
+    console.log(symbol);
+    switch (symbol) {
+        case "+":
+            result += add(number1, number2).toFixed(2);
+            number1 = Number(result);
+            number2 = "";
+            isNotEvaluated = true;
+            changeDisplay(result);
+            console.log(`addition = ${result}`);
+            break;
+        case "-":
+            result = subtract(number1, number2).toFixed(2);
+            number1 = Number(result);
+            number2 = "";
+            isNotEvaluated = true;
+            changeDisplay(result);
+            console.log(`subtraction = ${result}`);
+            break;
+        case "x":
+            result = multiply(number1, number2).toFixed(2);
+            number1 = Number(result);
+            number2 = "";
+            isNotEvaluated = true;
+            changeDisplay(result);
+            console.log(`multiplication = ${result}`);
+            break;
+        case "÷":
+            result = divide(number1, number2).toFixed(2);
+            number1 = Number(result);
+            number2 = "";
+            isNotEvaluated = true;
+            changeDisplay(result);
+            console.log(`division = ${result}`);
+            break;
+    }
+    result = "";
+    numbersOp = number1;
+    return Number(result);
 }
-evaluateOperation();
 
+document.querySelector(".equal").addEventListener("click", () => {
+    evaluateOperation();
+});
