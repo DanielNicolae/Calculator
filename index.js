@@ -46,6 +46,8 @@ document.querySelector(".clear").addEventListener("click", () => {
     numbersOp = "";
     number1 = "";
     number2 = "";
+    isNotEvaluated = true;
+    getFirstNum = true;
 });
 
 const operations = document.querySelectorAll(".operation");
@@ -91,7 +93,10 @@ function evaluateOperation() {
     console.log(symbol);
     switch (symbol) {
         case "+":
-            result += add(number1, number2).toFixed(2);
+            result = add(number1, number2).toFixed(2);
+            if((result * 100)%100 === 0) {
+                result = add(number1, number2);
+            }
             number1 = Number(result);
             number2 = "";
             isNotEvaluated = true;
@@ -100,6 +105,9 @@ function evaluateOperation() {
             break;
         case "-":
             result = subtract(number1, number2).toFixed(2);
+            if((result * 100)%100 === 0) {
+                result = subtract(number1, number2);
+            }
             number1 = Number(result);
             number2 = "";
             isNotEvaluated = true;
@@ -108,6 +116,9 @@ function evaluateOperation() {
             break;
         case "x":
             result = multiply(number1, number2).toFixed(2);
+            if((result * 100)%100 === 0) {
+                result = multiply(number1, number2);
+            }
             number1 = Number(result);
             number2 = "";
             isNotEvaluated = true;
@@ -116,6 +127,9 @@ function evaluateOperation() {
             break;
         case "÷":
             result = divide(number1, number2).toFixed(2);
+            if((result * 100)%100 === 0) {
+                result = divide(number1, number2);
+            }
             number1 = Number(result);
             number2 = "";
             isNotEvaluated = true;
