@@ -25,6 +25,7 @@ function divide(a, b) {
 let isNotEvaluated = true;
 let numbersOp = "";
 let result = "";
+let keyboard = "";
 
 function changeDisplay(mathOp) {
     document.querySelector(".result").textContent = mathOp;
@@ -38,6 +39,7 @@ function displayOperation() {
             changeDisplay(numbersOp);
         });
     }
+    
 }
 displayOperation();
 
@@ -145,3 +147,34 @@ function evaluateOperation() {
 document.querySelector(".equal").addEventListener("click", () => {
     evaluateOperation();
 });
+
+
+window.addEventListener("keydown", (e) => {
+    keyboard = document.querySelector(`button[data-key="${e.keyCode}"]`);
+    if(!keyboard) return;
+    let keyboardValue = keyboard.textContent;
+    if(getFirstNum && keyboardValue != "+" && keyboardValue != "-" && keyboardValue != "x" && keyboardValue != "÷"){
+        number1 += keyboardValue;
+        console.log(number1)
+    }
+    else if(isNotEvaluated) {
+        if(keyboardValue !== "=" && keyboardValue != "+" && keyboardValue != "-" && keyboardValue != "x" && keyboardValue != "÷")
+        number2 += keyboardValue;
+        console.log(number2)
+    }
+    if (keyboardValue && keyboardValue != "=" && 
+            (keyboardValue != "+" && keyboardValue != "-" && keyboardValue != "x" && keyboardValue != "÷")) {
+        numbersOp += keyboardValue;
+        changeDisplay(numbersOp);
+    }
+    else if (keyboardValue == "+" || keyboardValue == "-" || keyboardValue == "x" || keyboardValue == "÷") {
+        symbol = keyboardValue;
+        console.log(symbol);
+        getFirstNum = false;
+    }
+    else if(keyboardValue == "=") {
+        evaluateOperation();
+    }
+    
+});
+
