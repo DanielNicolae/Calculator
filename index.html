@@ -9,12 +9,34 @@
     <title>Calculator</title>
 </head>
 <body>
-    <img id="calculator" src="./images/calculator.jpg" alt="calculator">
-    <button id="sum" class="operation">+</button>
-    <button id="subtract" class="operation">-</button>
-    <button id="multiply" class="operation">x</button>
-    <button id="divide" class="operation">&#247;</button>
-    <p class="result">1111111111111111111#</p>
+    <div id="container">
+        <img id="calculator" src="./images/calculator.jpg" alt="calculator">
+        <p class="result">1111111111111111111#</p>
+        <button class="clear button">CLEAR</button>
+        <div class="buttons">
+            <div class="numbers">
+                <button class="number button">1</button>
+                <button class="number button">2</button>
+                <button class="number button">3</button>
+                <button class="number button">4</button>
+                <button class="number button">5</button>
+                <button class="number button">6</button>
+                <button class="number button">7</button>
+                <button class="number button">8</button>
+                <button class="number button">9</button>
+                <button class="number button">0</button>
+                <button class="equal button">=</button>
+                <button class="dot button">.</button> 
+            </div>
+            <div class="operations">
+                <button id="sum" class="operation button">+</button>
+                <button id="subtract" class="operation button">-</button>
+                <button id="multiply" class="operation button">x</button>
+                <button id="divide" class="operation button">&#247;</button>
+            </div>
+        </div>
+        
+    </div>
     <script type="text/javascript" src="index.js" ></script>
 </body>
 </html>

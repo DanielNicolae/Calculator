@@ -21,3 +21,11 @@ function multiply(...nums) {
 function divide(a, b) {
     return (a / b);
 }
+
+function changeDisplay(result) {
+    document.getElementById("result").textContent(result);
+}
+
+document.getElementsByClassName("clear")[0].addEventListener("click", () => {
+    changeDisplay("");
+});
