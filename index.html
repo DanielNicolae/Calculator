@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="index.css"/>
-    <link rel="icon" href="./images/favicon.ico"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="icon" href="./images/favicon.ico" />
     <title>Calculator</title>
-    <meta property="og:type" content="website"/>
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="Calculator" />
     <meta property="og:image" content="https://i.imgur.com/6jO6l47.jpg" />
     <meta property="og:image:url" content="https://i.imgur.com/6jO6l47.jpg" />
@@ -15,12 +16,14 @@
     <meta name="description" content="This is a calculator web app with keyboard functionality." />
     <meta property="og:url" content="https://danielnicolae.github.io/Calculator/" />
 </head>
+
 <body>
     <div id="container">
         <img id="calculator" src="./images/calculator.png" alt="calculator">
         <p class="result"></p>
-        <button data-key="67" class="clear button">CLEAR</button>
+
         <div class="buttons">
+            <button data-key="67" class="clear button">CLEAR</button>
             <div class="numbers">
                 <button data-key="97" class="number button">1</button>
                 <button data-key="98" class="number button">2</button>
@@ -33,7 +36,7 @@
                 <button data-key="105" class="number button">9</button>
                 <button data-key="96" class="number button">0</button>
                 <button data-key="187" class="equal button">=</button>
-                <button data-key="110" class="dot button">.</button> 
+                <button data-key="110" class="dot button">.</button>
             </div>
             <div class="operations">
                 <button id="sum" data-key="107" class="operation button">+</button>
@@ -42,8 +45,9 @@
                 <button id="divide" data-key="111" class="operation button">&#247;</button>
             </div>
         </div>
-        
+
     </div>
     <script type="text/javascript" src="index.js"></script>
 </body>
+
 </html>
